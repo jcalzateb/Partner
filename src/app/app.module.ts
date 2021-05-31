@@ -7,7 +7,7 @@ import { ListInstitutionsComponent } from './pages/list-institutions/list-instit
 import { NavComponent } from './shared/nav/nav.component';
 import { LocalStorageService} from './services/local-storage.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule, 
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [LocalStorageService],
   bootstrap: [AppComponent]

@@ -1,5 +1,5 @@
 <div class="container">
-    <table class="table">
+    <table class="table table-striped table-hover">
         <thead>
         <tr>
             <th scope="col">Headquarter</th>
@@ -11,7 +11,7 @@
         </thead>
         <tbody>
         <tr *ngFor=" let listI of institutionL">
-            <th scope="row">{{listI.institution=="true"?"yes":"no"}}</th>
+            <th scope="row">{{listI.institution?"Yes":"No"}}</th>
             <td>{{listI.acronym}}</td>
             <td>{{listI.name}}</td>
             <td>{{listI.city}}, {{listI.country}}</td>

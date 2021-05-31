@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LocalStorageService } from '../../services/local-storage.service';
-import { Partner } from '../../models/partner.interface';
+import { Partner, Country } from '../../models/partner.interface';
 
 
 @Component({
@@ -12,25 +12,32 @@ import { Partner } from '../../models/partner.interface';
 })
 export class RegisterPartnerComponent implements OnInit {
 
+  public countryI: any[2740];
+
   constructor(private router: Router, private storageS:LocalStorageService) { }
 
   ngOnInit(): void {
-    this.rForm.get("institution").setValue('gato');
+    this.rForm.get("institution").setValue('YES');
+
+    this.storageS.getContry().subscribe(resp=>{
+      this.countryI=resp;
+      console.log(this.countryI);
+      });
   }
 
   rForm = new FormGroup({
     institution: new FormControl('', Validators.required),
-    acronym: new FormControl('test', [Validators.required,Validators.maxLength(10)]),
-    name: new FormControl('test', [Validators.required, Validators.minLength(10)]),
-    type: new FormControl('test', Validators.required),
-    country: new FormControl('test', Validators.required),
-    city: new FormControl('test',Validators.required),
-    website: new FormControl('test', Validators.required)
+    acronym: new FormControl('', [Validators.required,Validators.maxLength(10)]),
+    name: new FormControl('', [Validators.required, Validators.minLength(10)]),
+    type: new FormControl('', Validators.required),
+    country: new FormControl('', Validators.required),
+    city: new FormControl('',Validators.required),
+    website: new FormControl('http://', Validators.required)
   });
 
   send(rForm:Partner){
     this.storageS.addIstitution(rForm);
-    console.log(this.storageS.getList);
+    //console.log(this.storageS.getList);
   }
 
   goList() {

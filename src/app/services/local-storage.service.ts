@@ -1,6 +1,6 @@
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Partner } from '../models/partner.interface';
-
+import { Partner, Country } from '../models/partner.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,7 @@ export class LocalStorageService {
 
   listI: Partner[];
 
-  constructor() { 
+  constructor(private http: HttpClient) { 
     this.listI = [{
       institution: '' ,
       acronym: '',
@@ -19,6 +19,10 @@ export class LocalStorageService {
       city: '',
       website: ''
     }];
+  }
+
+  getContry(){
+    return this.http.get<Country>('https://restcountries.eu/rest/v2/all');
   }
 
   getList(){
@@ -31,7 +35,6 @@ export class LocalStorageService {
   }
 
   addIstitution(listInstitution: Partner){
-     //this.listI.push(listInstitution);
      console.log(listInstitution);
     let listI: Partner[]=[];
     if(localStorage.getItem('listI')==null){
