@@ -1,95 +1,111 @@
 <div class = "container">
-    <form [formGroup]="rForm" (ngSubmit)="saveF(rForm.value)">
-        <div class="form-outline mb-2">
-            <div class= "question d-flex alig-item-center justify-content-between mb-1">
-                <label class="form-label" for="form1">Is this institution a branch?</label>
-                <div class="sel " >
-                    <button type="button" class="btn btn-success" (click)="show()">
-                        Yes
-                    </button>
-                    <button type="button" class="btn btn-danger" (click)="hide()">
-                        No
-                    </button>
+    <div class="subcontainer">
+        <div class = "title">
+            <h2>Request a new institution or branch</h2>
+        </div>
+        
+        <div class="description">
+            <p>
+                Please enter the institution as "Partener" the legal entity.
+            </p>
+            <p>
+                The name of the institution should be in its official language. (e.g. For CIAT: Centro Internacional de Agricultura Tropical).
+            </p>
+        </div>
+        <div class="content">
+            <form [formGroup]="rForm" (ngSubmit)="saveF(rForm.value)">
+                <div class="form-outline mb-2">
+                    <div class= "question d-flex alig-item-center justify-content-between mb-1">
+                        <label class="form-label" for="form1">Is this institution a branch?</label>
+                        <div class="sel " >
+                            <button type="button" class="btn btn-success" (click)="show()">
+                                Yes
+                            </button>
+                            <button type="button" class="btn btn-danger" (click)="hide()">
+                                No
+                            </button>
+                        </div>
+                    </div>
+                    <div class="showContent" id="showContent" >
+                        <label class="form-label" for="form1">Select institution headquarter</label>
+                        <select class="form-select form-control" aria-label="Default select example"  placeholder="Select institution headquarter" formControlName="institution" required >
+                            <option selected>Select an option...</option>
+                            <option *ngFor="let listI of institutionF">{{listI.name}}</option>
+                        </select>
+                        <div *ngIf="rForm.get('institution').errors && rForm.get('institution').touched">
+                            <p class="fs-6 fst-italic" style="color: red"  *ngIf="rForm.get('institution').hasError('required')">
+                                The field is required
+                            </p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="showContent" id="showContent" >
-                <label class="form-label" for="form1">Select institution headquarter</label>
-                <select class="form-select form-control" aria-label="Default select example"  placeholder="Select institution headquarter" formControlName="institution" required >
-                    <option selected>Select an option...</option>
-                    <option *ngFor="let listI of institutionF">{{listI.name}}</option>
-                </select>
-                <div *ngIf="rForm.get('institution').errors && rForm.get('institution').touched">
-                    <p class="fs-6 fst-italic" style="color: red"  *ngIf="rForm.get('institution').hasError('required')">
-                        The field is required
-                    </p>
+                <div class="form-outline mb-2">
+                    <label class="form-label" for="form1">Acronym:</label>
+                    <input type="text" class="form-control" placeholder="Acronym" formControlName="acronym" required />
+                    <div *ngIf="rForm.get('acronym').errors && rForm.get('acronym').touched">
+                        <p class="fs-6 fst-italic" style="color: red" *ngIf="rForm.get('acronym').hasError('required')">
+                            The field is required
+                        </p>
+                        <p class="fs-6 fst-italic" style="color: red" *ngIf="rForm.get('acronym').hasError('maxlength')">
+                            the maximum number of characters is 10
+                        </p>
+                    </div>
                 </div>
-            </div>
+                <div class="form-outline mb-2">
+                    <label class="form-label" for="form1">Name:</label>
+                    <input type="text" class="form-control" placeholder="Name" formControlName="name" required /> 
+                    <div *ngIf="rForm.get('name').errors && rForm.get('name').touched">
+                        <p class="fs-6 fst-italic" style="color: red" *ngIf="rForm.get('name').hasError('required')">
+                            The field is required
+                        </p>
+                        <p class="fs-6 fst-italic" style="color: red" *ngIf="rForm.get('name').hasError('maxlength')"> 
+                            it must be less than 10 words.  
+                        </p>
+                    </div> 
+                </div>
+                <div class="form-outline mb-2">
+                    <label class="form-label" for="form1">Type:</label>
+                    <select class="form-select form-control" aria-label="Default select example" placeholder="Type" formControlName="type" required >
+                        <option selected>Select an option...</option>
+                        <option value="1">Academic Institutions</option>
+                        <option value="2">Donor</option>
+                        <option value="3">Non-Governmenal Organization</option>
+                        <option value="4">Research Institution</option>
+                    </select>
+                    <div *ngIf="rForm.get('type').errors && rForm.get('type').touched">
+                        <p class="fs-6 fst-italic" style="color: red" *ngIf="rForm.get('type').hasError('required')">
+                            The field is required
+                        </p>
+                    </div> 
+                </div>
+                <div class="form-outline mb-2">
+                    <label class="form-label" for="form1">Country:</label>
+                    <select class="form-select form-control" aria-label="Default select example"  placeholder="Country" formControlName="country" required >
+                        <option selected>Select an option...</option>
+                        <option *ngFor="let country of countryI">{{country.alpha2Code}}</option>
+                    </select>
+                    <div *ngIf="rForm.get('country').errors && rForm.get('country').touched">
+                        <p class="fs-6 fst-italic" style="color: red" *ngIf="rForm.get('country').hasError('required')">
+                            The field is required
+                        </p>
+                    </div> 
+                </div>
+                <div class="form-outline mb-2">
+                    <label class="form-label" for="form1">City:</label>
+                    <input type="text" class="form-control" placeholder="City" formControlName="city" required />
+                    <div *ngIf="rForm.get('city').errors && rForm.get('city').touched">
+                        <p class="fs-6 fst-italic" style="color: red" *ngIf="rForm.get('city').hasError('required')">
+                            The field is required
+                        </p>
+                    </div> 
+                </div>
+                <div class="form-outline mb-2">
+                    <label class="form-label" for="form1">Website:</label>
+                    <input type="text" class="form-control" placeholder="Website" formControlName="website" />
+                </div>
+                <br><br>
+                <button type="submit" class="btn btn-primary" data-mdb-ripple-color="dark" [disabled]="rForm.invalid" >Request add new partner</button>
+            </form>
         </div>
-        <div class="form-outline mb-2">
-            <label class="form-label" for="form1">Acronym:</label>
-            <input type="text" class="form-control" placeholder="Acronym" formControlName="acronym" required />
-            <div *ngIf="rForm.get('acronym').errors && rForm.get('acronym').touched">
-                <p class="fs-6 fst-italic" style="color: red" *ngIf="rForm.get('acronym').hasError('required')">
-                    The field is required
-                </p>
-                <p class="fs-6 fst-italic" style="color: red" *ngIf="rForm.get('acronym').hasError('maxlength')">
-                    the maximum number of characters is 10
-                </p>
-              </div>
-        </div>
-        <div class="form-outline mb-2">
-            <label class="form-label" for="form1">Name:</label>
-            <input type="text" class="form-control" placeholder="Name" formControlName="name" required /> 
-            <div *ngIf="rForm.get('name').errors && rForm.get('name').touched">
-                <p class="fs-6 fst-italic" style="color: red" *ngIf="rForm.get('name').hasError('required')">
-                    The field is required
-                </p>
-                <p class="fs-6 fst-italic" style="color: red" *ngIf="rForm.get('name').hasError('maxlength')"> 
-                    it must be less than 10 words.  
-                </p>
-            </div> 
-        </div>
-        <div class="form-outline mb-2">
-            <label class="form-label" for="form1">Type:</label>
-            <select class="form-select form-control" aria-label="Default select example" placeholder="Type" formControlName="type" required >
-                <option selected>Select an option...</option>
-                <option value="1">Academic Institutions</option>
-                <option value="2">Donor</option>
-                <option value="3">Non-Governmenal Organization</option>
-                <option value="4">Research Institution</option>
-            </select>
-            <div *ngIf="rForm.get('type').errors && rForm.get('type').touched">
-                <p class="fs-6 fst-italic" style="color: red" *ngIf="rForm.get('type').hasError('required')">
-                    The field is required
-                </p>
-            </div> 
-        </div>
-        <div class="form-outline mb-2">
-            <label class="form-label" for="form1">Country:</label>
-            <select class="form-select form-control" aria-label="Default select example"  placeholder="Country" formControlName="country" required >
-                <option selected>Select an option...</option>
-                <option *ngFor="let country of countryI">{{country.alpha2Code}}</option>
-            </select>
-            <div *ngIf="rForm.get('country').errors && rForm.get('country').touched">
-                <p class="fs-6 fst-italic" style="color: red" *ngIf="rForm.get('country').hasError('required')">
-                    The field is required
-                </p>
-            </div> 
-        </div>
-        <div class="form-outline mb-2">
-            <label class="form-label" for="form1">City:</label>
-            <input type="text" class="form-control" placeholder="City" formControlName="city" required />
-            <div *ngIf="rForm.get('city').errors && rForm.get('city').touched">
-                <p class="fs-6 fst-italic" style="color: red" *ngIf="rForm.get('city').hasError('required')">
-                    The field is required
-                </p>
-            </div> 
-        </div>
-        <div class="form-outline mb-2">
-            <label class="form-label" for="form1">Website:</label>
-            <input type="text" class="form-control" placeholder="Website" formControlName="website" />
-        </div>
-        <br><br>
-        <button type="submit" class="btn btn-primary" data-mdb-ripple-color="dark" >Request add new partner</button>
-    </form>
+    </div>
 </div>
