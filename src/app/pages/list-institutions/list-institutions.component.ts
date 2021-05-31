@@ -16,8 +16,8 @@ export class ListInstitutionsComponent implements OnInit {
 
   ngOnInit(): void {
     this.institutionL=this.storageS.getList();
-    
   }
+  
   deleteInstitution(listI:Partner){
     if(confirm('Are you sure you want to delete it?')){
       this.storageS.deleteInstitution(listI);
