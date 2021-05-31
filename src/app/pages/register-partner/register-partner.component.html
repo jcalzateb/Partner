@@ -1,1 +1,34 @@
-<p>register-partner works!</p>
+<div class = "container">
+    <form [formGroup]="rForm" (ngSubmit)="send(rForm.value)">
+        <div class="form-outline">
+            <input type="text" class="form-control" placeholder="Select institution headquarter" formControlName="institution" required />
+            <label class="form-label" for="form1">Select institution headquarter</label>
+        </div>
+        <div class="form-outline">
+            <input type="text" class="form-control" placeholder="Acronym" formControlName="acronym" required />
+            <label class="form-label" for="form1">Acronym:</label>
+        </div>
+        <div class="form-outline">
+            <input type="text" class="form-control" placeholder="Name" formControlName="name" required />
+            <label class="form-label" for="form1">Name:</label>
+        </div>
+        <div class="form-outline">
+            <input type="text" class="form-control" placeholder="Type" formControlName="type" required />
+            <label class="form-label" for="form1">Type:</label>
+        </div>
+        <div class="form-outline">
+            <input type="text" class="form-control" placeholder="Country" formControlName="country" required />
+            <label class="form-label" for="form1">Country:</label>
+        </div>
+        <div class="form-outline">
+            <input type="text" class="form-control" placeholder="City" formControlName="city" required />
+            <label class="form-label" for="form1">City:</label>
+        </div>
+        <div class="form-outline">
+            <input type="text" class="form-control" placeholder="Website" formControlName="website" required />
+            <label class="form-label" for="form1">Website:</label>
+        </div>
+        <br><br>
+        <button type="submit" class="btn btn-link" data-mdb-ripple-color="dark" >Request add new partner</button>
+    </form>
+</div>
