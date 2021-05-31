@@ -13,12 +13,13 @@ import { Partner, Country } from '../../models/partner.interface';
 export class RegisterPartnerComponent implements OnInit {
 
   public countryI: any[2740];
+  institutionF: Partner[];
 
   constructor(private router: Router, private storageS:LocalStorageService) { }
 
   ngOnInit(): void {
     this.rForm.get("institution").setValue('YES');
-
+    this.institutionF=this.storageS.getList();
     this.storageS.getContry().subscribe(resp=>{
       this.countryI=resp;
       console.log(this.countryI);
@@ -32,7 +33,7 @@ export class RegisterPartnerComponent implements OnInit {
     type: new FormControl('', Validators.required),
     country: new FormControl('', Validators.required),
     city: new FormControl('',Validators.required),
-    website: new FormControl('http://', Validators.required)
+    website: new FormControl('http://')
   });
 
   send(rForm:Partner){
@@ -42,6 +43,13 @@ export class RegisterPartnerComponent implements OnInit {
 
   goList() {
     this.router.navigate(['/list-institution']);
+  }
+
+  show(){
+    document.getElementById("showContent").style.display="block";
+  }
+  hide(){
+    document.getElementById("showContent").style.display="none";
   }
 
 }
