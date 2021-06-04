@@ -1,45 +1,48 @@
 <div class = "container">
-    <div class="subcontainer">
-        <div class = "title">
-            <h2>Request a new institution or branch</h2>
-        </div>
-        
-        <div class="description">
-            <p>
-                Please enter the institution as "Partener" the legal entity.
-            </p>
-            <p>
-                The name of the institution should be in its official language. (e.g. For CIAT: Centro Internacional de Agricultura Tropical).
-            </p>
-        </div>
-        <div class="content">
-            <form [formGroup]="rForm" (ngSubmit)="saveF(rForm.value)">
-                <div class="form-outline mb-2">
-                    <div class= "question d-flex alig-item-center justify-content-between mb-1">
-                        <label class="form-label" for="form1">Is this institution a branch?</label>
-                        <div class="sel " >
+    <div class = "title">
+        <h2>Request a new institution or branch</h2>
+    </div>
+    <div class="description">
+        <p>
+            Please enter the institution as "Partener" the legal entity.
+        </p>
+        <p>
+            The name of the institution should be in its official language. (e.g. For CIAT: Centro Internacional de Agricultura Tropical).
+        </p>
+    </div>
+    <div class="content">
+        <form [formGroup]="rForm" (ngSubmit)="saveF(rForm.value)">
+            <div class="form-outline mb-2">
+                <div class= "question mb-2">
+                    <label class="form-label" for="form1">Is this institution a branch?</label>
+                    <div class="btn-question" >
+                        <div class="bnt-yes-or-not">
                             <button type="button" class="btn btn-success" (click)="show()">
                                 Yes
                             </button>
+                        </div>
+                        <div class="bnt-yes-or-not">
                             <button type="button" class="btn btn-danger" (click)="hide()">
                                 No
                             </button>
                         </div>
                     </div>
-                    <div class="showContent" id="showContent" >
-                        <label class="form-label" for="form1">Select institution headquarter</label>
-                        <select class="form-select form-control" aria-label="Default select example"  placeholder="Select institution headquarter" formControlName="institution" required >
-                            <option selected>Select an option...</option>
-                            <option *ngFor="let listI of institutionF">{{listI.name}}</option>
-                        </select>
-                        <div *ngIf="rForm.get('institution').errors && rForm.get('institution').touched">
-                            <p class="fs-6 fst-italic" style="color: red"  *ngIf="rForm.get('institution').hasError('required')">
-                                The field is required
-                            </p>
-                        </div>
+                </div>
+                <div class="showContent" id="showContent" >
+                    <label class="form-label" for="form1">Select institution headquarter</label>
+                    <select class="form-select form-control" aria-label="Default select example"  placeholder="Select institution headquarter" formControlName="institution" required >
+                        <option selected>Select an option...</option>
+                        <option *ngFor="let listI of institutionF">{{listI.name}}</option>
+                    </select>
+                    <div *ngIf="rForm.get('institution').errors && rForm.get('institution').touched">
+                        <p class="fs-6 fst-italic" style="color: red"  *ngIf="rForm.get('institution').hasError('required')">
+                            The field is required
+                        </p>
                     </div>
                 </div>
-                <div class="form-outline mb-2">
+            </div>
+            <div class="input-box">
+                <div class="form-outline ">
                     <label class="form-label" for="form1">Acronym:</label>
                     <input type="text" class="form-control" placeholder="Acronym" formControlName="acronym" required />
                     <div *ngIf="rForm.get('acronym').errors && rForm.get('acronym').touched">
@@ -51,7 +54,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="form-outline mb-2">
+                <div class="form-outline ">
                     <label class="form-label" for="form1">Name:</label>
                     <input type="text" class="form-control" placeholder="Name" formControlName="name" required /> 
                     <div *ngIf="rForm.get('name').errors && rForm.get('name').touched">
@@ -63,7 +66,7 @@
                         </p>
                     </div> 
                 </div>
-                <div class="form-outline mb-2">
+                <div class="form-outline ">
                     <label class="form-label" for="form1">Type:</label>
                     <select class="form-select form-control" aria-label="Default select example" placeholder="Type" formControlName="type" required >
                         <option selected>Select an option...</option>
@@ -78,7 +81,7 @@
                         </p>
                     </div> 
                 </div>
-                <div class="form-outline mb-2">
+                <div class="form-outline ">
                     <label class="form-label" for="form1">Country:</label>
                     <select class="form-select form-control" aria-label="Default select example"  placeholder="Country" formControlName="country" required >
                         <option selected>Select an option...</option>
@@ -90,7 +93,7 @@
                         </p>
                     </div> 
                 </div>
-                <div class="form-outline mb-2">
+                <div class="form-outline ">
                     <label class="form-label" for="form1">City:</label>
                     <input type="text" class="form-control" placeholder="City" formControlName="city" required />
                     <div *ngIf="rForm.get('city').errors && rForm.get('city').touched">
@@ -99,13 +102,14 @@
                         </p>
                     </div> 
                 </div>
-                <div class="form-outline mb-2">
-                    <label class="form-label" for="form1">Website:</label>
-                    <input type="text" class="form-control" placeholder="Website" formControlName="website" />
-                </div>
-                <br><br>
+            </div>
+            <div class="form-outline mb-2">
+                <label class="form-label" for="form1">Website:</label>
+                <input type="text" class="form-control" placeholder="Website" formControlName="website" />
+            </div>
+            <div class="btn-send">
                 <button type="submit" class="btn btn-primary" data-mdb-ripple-color="dark" [disabled]="rForm.invalid" >Request add new partner</button>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
 </div>
